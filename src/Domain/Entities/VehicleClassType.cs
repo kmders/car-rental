@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class VechileClassType
+    public class VehicleClassType
     {
         [Key]
         public int Id { get; set; }
