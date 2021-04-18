@@ -48,8 +48,9 @@ namespace WebApp.Areas.Admin.Controllers
         {
             try
             {
-                VehicleBrandService.Add(vehicleBrand);
-                return RedirectToAction(nameof(Index));
+                var response = VehicleBrandService.Add(vehicleBrand);
+                ViewBag.Response = response;
+                return View();
             }
             catch
             {
@@ -71,8 +72,9 @@ namespace WebApp.Areas.Admin.Controllers
         {
             try
             {
-                VehicleBrandService.Update(vehicleBrand);
-                return RedirectToAction(nameof(Index));
+                var response = VehicleBrandService.Update(vehicleBrand);
+                ViewBag.Response = response;
+                return View(vehicleBrand);
             }
             catch
             {
