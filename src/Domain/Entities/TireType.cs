@@ -9,6 +9,7 @@ namespace Domain.Entities
 
         [Required]
         [MaxLength(50)]
+        [Display(Name = "Lastik Türü")]
         public string Name { get; set; }
     }
 }
