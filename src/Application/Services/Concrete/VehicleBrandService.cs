@@ -1,4 +1,5 @@
 ﻿using Application.Infrastructure.Persistence;
+using Application.Services.Common;
 using Domain.DTOs;
 using Domain.Entities;
 using System.Collections.Generic;
@@ -6,13 +7,11 @@ using System.Linq;
 
 namespace Application.Services.Concrete
 {
-    public class VehicleBrandService : IVehicleBrandService
+    public class VehicleBrandService : BaseService, IVehicleBrandService
     {
-        private ICarRentalDbContext Context { get; }
-
-        public VehicleBrandService(ICarRentalDbContext context)
+        public VehicleBrandService(ICarRentalDbContext context) : base(context)
         {
-            Context = context;
+
         }
 
         public Response Add(VehicleBrand vehicleBrand)
