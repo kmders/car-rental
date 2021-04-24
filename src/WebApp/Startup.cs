@@ -1,15 +1,11 @@
+using Application.Infrastructure.Persistence;
+using Application.Services;
+using Application.Services.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Services;
-using Application.Services.Concrete;
-using Application.Infrastructure.Persistence;
 
 namespace WebApp
 {
@@ -38,6 +34,7 @@ namespace WebApp
             services.AddScoped<IColorTypeService, ColorTypeService>();
             services.AddScoped<IRentalPeriodService, RentalPeriodService>();
             services.AddScoped<IVehicleClassTypeService, VehicleClassTypeService>();
+            services.AddScoped<IVehicleService, VehicleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
