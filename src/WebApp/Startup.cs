@@ -35,6 +35,7 @@ namespace WebApp
             services.AddScoped<IRentalPeriodService, RentalPeriodService>();
             services.AddScoped<IVehicleClassTypeService, VehicleClassTypeService>();
             services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<IVehicleRentalPriceService, VehicleRentalPriceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
