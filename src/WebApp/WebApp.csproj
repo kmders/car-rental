@@ -14,6 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Admin\Views\Vehicle\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Vehicle\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\Vehicle\Details.cshtml" />
+    <None Include="Areas\Admin\Views\Vehicle\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Vehicle\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 

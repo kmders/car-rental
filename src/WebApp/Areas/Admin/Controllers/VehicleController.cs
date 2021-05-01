@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
+using WebApp.Areas.Admin.Models;
 
 namespace WebApp.Areas.Admin.Controllers
 {
@@ -47,7 +48,21 @@ namespace WebApp.Areas.Admin.Controllers
         {
             VehicleFilter filter = new VehicleFilter();
             var items = VehicleService.Get(filter);
-            return View(items);
+            VehicleViewModel model = new VehicleViewModel();
+            model.Filter = filter;
+            model.Vehicles = items;
+            SetParametersToViewBag();
+            return View(model);
+        }
+
+        // POST: VehicleController
+        [HttpPost]
+        public ActionResult Index(VehicleViewModel model)
+        {
+            var items = VehicleService.Get(model.Filter);
+            model.Vehicles = items;
+            SetParametersToViewBag();
+            return View(model);
         }
 
         // GET: VehicleController/Details/5
