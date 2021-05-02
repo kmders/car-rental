@@ -1,11 +1,13 @@
 using Application.Infrastructure.Persistence;
 using Application.Services;
 using Application.Services.Concrete;
+using Application.Utilities.FileUpload;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Application;
 
 namespace WebApp
 {
@@ -36,6 +38,8 @@ namespace WebApp
             services.AddScoped<IVehicleClassTypeService, VehicleClassTypeService>();
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IVehicleRentalPriceService, VehicleRentalPriceService>();
+
+            services.AddApplicationServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
