@@ -12,5 +12,6 @@ namespace Application.Services
         Vehicle GetById(int id);
         List<VehicleDTO> Get(VehicleFilter filter);
         VehicleDTO GetDetail(int id);
+        List<VehicleListItemDTO> GetListItems(VehicleFilter filter);
     }
 }
