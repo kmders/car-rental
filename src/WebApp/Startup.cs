@@ -1,13 +1,12 @@
-using Application.Infrastructure.Persistence;
-using Application.Services;
-using Application.Services.Concrete;
-using Application.Utilities.FileUpload;
+using Application;
+using Domain.Constants;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Application;
+using System;
 
 namespace WebApp
 {
@@ -25,21 +24,15 @@ namespace WebApp
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<CarRentalDbContext>();
-            services.AddScoped<ICarRentalDbContext>(provider => provider.GetService<CarRentalDbContext>());
-
-            services.AddScoped<IVehicleBrandService, VehicleBrandService>();
-            services.AddScoped<IVehicleModelService, VehicleModelService>();
-            services.AddScoped<ITireTypeService, TireTypeService>();
-            services.AddScoped<IFuelTypeService, FuelTypeService>();
-            services.AddScoped<ITransmissionTypeService, TransmissionTypeService>();
-            services.AddScoped<IColorTypeService, ColorTypeService>();
-            services.AddScoped<IRentalPeriodService, RentalPeriodService>();
-            services.AddScoped<IVehicleClassTypeService, VehicleClassTypeService>();
-            services.AddScoped<IVehicleService, VehicleService>();
-            services.AddScoped<IVehicleRentalPriceService, VehicleRentalPriceService>();
-
             services.AddApplicationServices();
+
+            services.AddAuthentication(AuthenticationConstants.AuthenticationScheme)
+                    .AddCookie(o =>
+                    {
+                        o.Cookie.Name = "Rentacar";
+                        o.ExpireTimeSpan = new TimeSpan(0, 10, 0);
+                        o.LoginPath = "/auth/login";
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +51,8 @@ namespace WebApp
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

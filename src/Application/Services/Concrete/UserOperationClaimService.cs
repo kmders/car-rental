@@ -1,0 +1,26 @@
+﻿using Application.Infrastructure.Persistence;
+using Application.Services.Common;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Application.Services.Concrete
+{
+    internal class UserOperationClaimService : BaseService, IUserOperationClaimService
+    {
+        public UserOperationClaimService(ICarRentalDbContext context) : base(context)
+        {
+
+        }
+
+        public List<OperationClaim> GetClaims(int userId)
+        {
+            var claims = (from uoc in Context.UserOperationClaim.Include(x => x.OperationClaim)
+                          where uoc.UserId == userId
+                          select uoc.OperationClaim
+                          ).ToList();
+            return claims;
+        }
+    }
+}
