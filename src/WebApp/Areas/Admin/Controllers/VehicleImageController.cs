@@ -1,5 +1,7 @@
 ﻿using Application.Services;
+using Domain.Constants;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +14,8 @@ namespace WebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("admin/[controller]/[action]")]
+    [Authorize(AuthenticationSchemes = AuthenticationConstants.AuthenticationScheme,
+               Roles = AuthenticationConstants.OperationClaims.AdminStr)]
     public class VehicleImageController : Controller
     {
         private IVehicleImageService VehicleImageService { get; }
